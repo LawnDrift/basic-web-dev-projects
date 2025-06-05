@@ -15,20 +15,91 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  min-width: 320px;
   background-color: rgb(166, 166, 168);
   color: white;
   font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-h1 {
-  font-weight: 500;
-}
 
 .container {
   width: 320px;
-  height: 620px;
+  height: 640px;
   border-radius: 2.5rem;
   background-color: var(--calc-color);
+  padding: 20px 20px 0px 20px;
+}
+
+.top-container {
+  display: flex;
+  
+  flex-direction: column;
+  justify-content: end;
+  text-align: right;
+  height: 30%;
+  width: 100%;
+  border-bottom: solid 1px blue;
+  
+}
+
+#results-output {
+  display: block;
+
+  font-size: 4rem;
+  margin: 0 10px 0 0;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+#equation-hover {
+  margin: 0 20px 0 0;
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+
+.btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  border: none;
+  margin: .5rem 0.2rem;
+  cursor: pointer;
+}
+
+.btn.gray {
+  background-color: rgb(183, 183, 183);
+  
+}
+
+.btn.orange {
+  background-color: orange;
+  font-size: 2.1rem;
+  color: white;
+  font-weight: 400;
+
+}
+
+.btn.num {
+  background-color: rgb(58, 58, 58);
+  color: white;
+  font-size: 1.85rem;
+  font-weight: 400;
+}
+
+.btn.zero {
+  width: 131px;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 20px;
 }
