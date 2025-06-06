@@ -13,13 +13,35 @@ const plusBtn = document.getElementById('plus-btn');
 const decimalBtn = document.getElementById('decimal-btn');
 const equalsBtn = document.getElementById('equals-btn');
 
-let equalsResultString = '';
+
 
 acBtn.addEventListener('click', () => {
   resultsOutput.innerText = "0";
   equationHover.innerText = "";
-  equalsResultString = '';
 });
+
+positiveNegativeBtn.addEventListener('click', () => {
+  if (resultsOutput.innerText == "0") {
+    return;
+  }
+  const negativeRegex = /\(-(\d+)\)$/;
+  const otherNegativeRegex = /-(\d+)$/;
+  const positiveRegex = /(\d+)$/g;
+
+  if (negativeRegex.test(resultsOutput.innerText)) {
+    resultsOutput.innerText = resultsOutput.innerText.replace(negativeRegex, "$1");
+  }
+  else if (otherNegativeRegex.test(resultsOutput.innerText)) {
+     resultsOutput.innerText = resultsOutput.innerText.replace(otherNegativeRegex, "$1");
+  }
+  else {
+    resultsOutput.innerText = resultsOutput.innerText.replace(positiveRegex, "(-$1)");
+  }
+  
+
+});
+
+
 
 numBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -34,17 +56,62 @@ numBtns.forEach(btn => {
 });
 
 divideBtn.addEventListener('click', () => {
-   //Regex checks if the user already has put the symbol, 
-   //to prevent from putting it again.
-  const alreadyHasDivide = /[0-9]+[\u{00F7}]+$/gu;
+   //Regex checks if the user already has put divide symbol or 
+   // other symbol to prevent from putting it again.
+  const alreadyHasDivide = /[-÷×+]+$/u;
   if (resultsOutput.innerText == "0" || 
     alreadyHasDivide.test(resultsOutput.innerText)) {
     return;
   }
  
   resultsOutput.innerText += divideBtn.innerText;
-  
+});
 
+timesBtn.addEventListener('click', () => {
+  //regex checks if the user already has put times symbol or 
+  //other symbol
+  const alreadyHasTimes = /[-÷×+]+$/u;
+  if (resultsOutput.innerText == "0" || 
+    alreadyHasTimes.test(resultsOutput.innerText)) {
+    return;
+  }
+ 
+  resultsOutput.innerText += timesBtn.innerText;
+})
+
+minusBtn.addEventListener('click', () => {
+  //regex checks if the user already has put minus symbol 
+  // or other symbol
+  const alreadyHasMinus = /[-]+$/gu;
+  if (alreadyHasMinus.test(resultsOutput.innerText)) {
+    return;
+  }
+  if (resultsOutput.innerText == "0") {
+    resultsOutput.innerText = "-";
+  } else {
+    resultsOutput.innerText += "-";
+  }
+})
+
+plusBtn.addEventListener('click', () => {
+  //regex checks if the user already has put minus symbol 
+  // or other symbol
+  const alreadyHasPlus = /[-÷×+]+$/u;
+  if (resultsOutput.innerText == "0" || 
+    alreadyHasPlus.test(resultsOutput.innerText)) {
+    return;
+  }
+ 
+  resultsOutput.innerText += plusBtn.innerText;
+})
+
+decimalBtn.addEventListener('click', () => {
+  //regex checks if the user already has put . symbol
+  const alreadyHasDot = /[.]+$/gu;
+  if (alreadyHasDot.test(resultsOutput.innerText)) {
+    return;
+  }
+  resultsOutput.innerText += decimalBtn.innerText;
 });
 
 equalsBtn.addEventListener('click', () => {
@@ -61,12 +128,10 @@ equalsBtn.addEventListener('click', () => {
 });
 
 
-
 function returnOperator(string) {
   const operators = {
     '\u00F7': '/',
     '\u00D7': '*',
-    '\u2212': '-',
     '\u002B': '+',
     
   }
@@ -78,12 +143,8 @@ function returnOperator(string) {
     result = result.replace(regex, operator);
     
   }
-
   return result;
-
 }
-
-
 
 function performOperations(str) {
   const validString = returnOperator(str);
