@@ -71,9 +71,13 @@ percentBtn.addEventListener('click', () => {
 
 numBtns.forEach(btn => {
   btn.addEventListener('click', () => {
+    const alreadyHasPercent = /\d+%$/;
     if (resultsOutput.innerText == "0") {
       resultsOutput.innerText = btn.innerText;
 
+    }
+    else if (alreadyHasPercent.test(resultsOutput.innerText)) {
+      return;
     }
     else {
       resultsOutput.innerText += btn.innerText;
@@ -148,7 +152,7 @@ decimalBtn.addEventListener('click', () => {
 
 equalsBtn.addEventListener('click', () => {
   //checks to see if text ends with a number
-  const anyNum = /\d+$|%$/g;
+  const anyNum = /\d+$|%$|\(-\d+\)$/g;
   if (resultsOutput.innerText == "0" ||
     !anyNum.test(resultsOutput.innerText)
   ) {
