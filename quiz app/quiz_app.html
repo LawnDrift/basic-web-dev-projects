@@ -8,22 +8,27 @@
 </head>
 <body>
   <div id="container">
-
+    <div class="q-section"><h1 id="question-text"></h1></div>
+    <div class="options">
+      <button class="btn" id="option1"></button>
+      <button class="btn" id="option2"></button>
+      <button class="btn" id="option3"></button>
+      <button class="btn" id="option4"></button>
+    </div>
   </div>
-  <div id="answer-box">
+  <div class="answer-box hidden">
     
     <div id="explanation">
       <div class="top-container">
-        <button class="btn right">d 4</button>
-        <h1 class="right"> is RIGHT</h1>
+        <button class="btn" id="result-btn"></button>
+        <h1 id="is-correct"></h1>
       </div>
       <div class="bottom-container">
-        <p>
-          2+2 = 4 because
-          two adds to two, giving four.
+        <p id="explanation-text">
+          
         </p>
-        <button class="btn" id="continue">Continue</button>
-      </div>
+        <button class="btn2" id="continue">Continue</button>
+      </div>      
 
     </div>
   </div>

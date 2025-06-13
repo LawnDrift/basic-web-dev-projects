@@ -77,7 +77,7 @@ body {
   border-bottom: 1px solid rgb(52, 100, 220);
 }
 
-.question {
+#question-text {
   text-align: end;
 
   margin: 0;
@@ -98,7 +98,7 @@ body {
   z-index: 1;
 }
 
-.btn::before , .btn::after {
+.btn::before, .btn2::before , .btn::after, .btn2::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -114,7 +114,7 @@ body {
 }
 
 
-.btn::before {
+.btn::before, .btn2::before {
   filter: blur(0.4rem);
   opacity: 0.5;
 }
@@ -129,7 +129,7 @@ body {
 
 }
 
-.btn {
+.btn, .btn2 {
   position: relative;
   margin: 0;
   background-color: rgb(43, 55, 102);
@@ -145,7 +145,7 @@ body {
   cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover, .btn2:hover {
   background-color: rgba(97, 121, 242, 0.5);
 }
 
@@ -164,7 +164,7 @@ body {
   cursor: auto;
 }
 
-#answer-box {
+.answer-box {
   position: fixed;
   top: 0;
   left: 0;
@@ -179,6 +179,10 @@ body {
   z-index: 2;
 }
 
+.answer-box.hidden {
+  display: none;
+}
+
 h1.right {
   color: rgb(70, 211, 70);
   margin: 15px;
@@ -191,7 +195,7 @@ h1.wrong {
 
 #explanation {
   position: relative;
-  width: 70%;
+  width: clamp(320px, 70%, 700px);
   margin: auto;
   padding: 25px;
 
