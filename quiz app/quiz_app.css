@@ -8,6 +8,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: linear-gradient(45deg, rgb(19, 20, 31), rgb(17, 18, 46) 25%
@@ -37,7 +38,8 @@ body {
   inherits: false;
 }
 
-#container::after, #container::before {
+#container::after, #container::before,
+#explanation::before, #explanation::after {
   content: '';
   position: absolute;
   height: 100%;
@@ -52,7 +54,7 @@ body {
   animation: 3s spin linear infinite;
 }
 
-#container::before {
+#container::before, #explanation::before {
   filter: blur(2.5rem);
   opacity: 0.5;
 }
@@ -96,7 +98,7 @@ body {
   z-index: 1;
 }
 
-.btn::before, .btn::after {
+.btn::before , .btn::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -111,9 +113,20 @@ body {
   animation: 3s spin linear infinite;
 }
 
+
 .btn::before {
   filter: blur(0.4rem);
   opacity: 0.5;
+}
+
+.btn.right::before , .btn.right::after {
+  background-image: conic-gradient(from var(--angle), rgb(39, 222, 124),  rgb(24, 204, 81), rgb(23, 207, 81), rgb(93, 244, 151));
+
+}
+
+.btn.wrong::before , .btn.wrong::after {
+  background-image: conic-gradient(from var(--angle), rgb(222, 39, 39),  rgb(178, 37, 37), rgb(207, 23, 23), rgb(244, 93, 93));
+
 }
 
 .btn {
@@ -134,4 +147,81 @@ body {
 
 .btn:hover {
   background-color: rgba(97, 121, 242, 0.5);
+}
+
+
+.btn.right, .btn.right:hover {
+  width: 168px;
+  height: 50px;
+  background-color: rgb(70, 168, 70);
+  cursor: auto;
+}
+
+.btn.wrong, .btn.wrong:hover {
+  width: 168px;
+  height: 50px;
+  background-color: rgb(167, 49, 49);
+  cursor: auto;
+}
+
+#answer-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+h1.right {
+  color: rgb(70, 211, 70);
+  margin: 15px;
+}
+
+h1.wrong {
+  color: rgb(188, 22, 22);
+  margin: 15px;
+} 
+
+#explanation {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  padding: 25px;
+
+  background-color: rgb(44, 44, 73);
+  border-radius: 1.25rem;
+  color: rgb(208, 208, 208);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+
+#explanation p {
+  font-size: 25px;
+}
+
+.bottom-container {
+  z-index: 2;
+}
+
+#continue {
+  width: 168px;
+  height: 50px;
 }
