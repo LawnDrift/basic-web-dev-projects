@@ -17,7 +17,7 @@ const questions = [
 const container = document.getElementById('container');
 
 container.innerHTML = `
-  <h1 class="question">${questions[0].question}</h1>
+  <div class="q-section"><h1 class="question">${questions[0].question}</h1></div>
   <div class="options">
     <button class="btn">${questions[0].option1}</button>
     <button class="btn">${questions[0].option2}</button>
