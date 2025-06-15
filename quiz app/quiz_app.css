@@ -14,6 +14,7 @@ body {
   background: linear-gradient(45deg, rgb(19, 20, 31), rgb(17, 18, 46) 25%
   , rgb(26, 12, 71) 50%, rgb(15, 6, 48));
   font-family: monospace;
+
 }
 
 
@@ -29,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
 }
 
 @property --angle {
@@ -78,13 +79,12 @@ body {
 }
 
 #question-text {
-  text-align: end;
-
+  text-align: center;
   margin: 0;
   font-size: 35px;
 }
 
-.options {
+#options {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -98,12 +98,50 @@ body {
   z-index: 1;
 }
 
-.btn::before, .btn2::before , .btn::after, .btn2::after {
+#final-results-container {
+  display: none;
+  width: 85%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  scrollbar-color: rgb(52, 100, 220) rgb(44, 44, 73);
+  scrollbar-width: 5px;
+  z-index: 1;
+}
+.question-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid rgb(52, 100, 220);
+  z-index: 1;
+}
+.q-num {
+  width: 70%;
+  padding-left: 10px;
+  text-align: start;
+  font-size: 20px;
+}
+
+.right.q-score, .right:hover.q-score,
+.wrong.q-score, .wrong:hover.q-score {
+  width: 30%;
+  height: 100%;
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+}
+
+.btn::before, .btn2::before , 
+.btn::after, .btn2::after,
+.right::before, .right::after,
+.wrong::before, .wrong::after {
   content: '';
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: conic-gradient(from var(--angle), rgb(87, 130, 238),  rgb(55, 88, 255), rgb(97, 121, 242), rgb(68, 84, 253));
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -112,24 +150,26 @@ body {
   border-radius: 0.9rem;
   animation: 3s spin linear infinite;
 }
+.btn::before, .btn::after {
+  background-image: conic-gradient(from var(--angle), rgb(87, 130, 238),  rgb(55, 88, 255), rgb(97, 121, 242), rgb(68, 84, 253));
+}
 
-
-.btn::before, .btn2::before {
+.btn::before, .btn2::before, .right::before, .wrong::before {
   filter: blur(0.4rem);
   opacity: 0.5;
 }
 
-.btn.right::before , .btn.right::after {
+.right::before , .right::after {
   background-image: conic-gradient(from var(--angle), rgb(39, 222, 124),  rgb(24, 204, 81), rgb(23, 207, 81), rgb(93, 244, 151));
 
 }
 
-.btn.wrong::before , .btn.wrong::after {
+.wrong::before , .wrong::after {
   background-image: conic-gradient(from var(--angle), rgb(222, 39, 39),  rgb(178, 37, 37), rgb(207, 23, 23), rgb(244, 93, 93));
 
 }
 
-.btn, .btn2 {
+.btn, .btn2, .right, .wrong {
   position: relative;
   margin: 0;
   background-color: rgb(43, 55, 102);
@@ -150,14 +190,14 @@ body {
 }
 
 
-.btn.right, .btn.right:hover {
+.right, .right:hover {
   width: 168px;
   height: 50px;
   background-color: rgb(70, 168, 70);
   cursor: auto;
 }
 
-.btn.wrong, .btn.wrong:hover {
+.wrong, .wrong:hover {
   width: 168px;
   height: 50px;
   background-color: rgb(167, 49, 49);
@@ -183,12 +223,12 @@ body {
   display: none;
 }
 
-h1.right {
+.h1-right {
   color: rgb(70, 211, 70);
   margin: 15px;
 }
 
-h1.wrong {
+.h1-wrong {
   color: rgb(188, 22, 22);
   margin: 15px;
 } 

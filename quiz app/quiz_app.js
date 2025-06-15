@@ -12,12 +12,16 @@ const questions = [
     option4: "d) 4",
     answer: "d) 4",
     explanation: "2+2 = 4 because two adds to two, giving four.",
-  }
+    gotright: 'wrong',
+  },
+  
 ];
 
 const container = document.getElementById('container');
 const questionText = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options');
 const buttons = document.querySelectorAll('.btn');
+const finalResultsContainer = document.getElementById('final-results-container');
 const answerBox = document.querySelector('.answer-box');
 const explanation = document.getElementById('explanation');
 const resultBtn = document.getElementById('result-btn');
@@ -26,6 +30,7 @@ const explanationText = document.getElementById('explanation-text');
 const continueBtn = document.getElementById('continue');
 
 let currentQuestionIndex = 0;
+let finalScore = 0;
 updateQuiz();
 
 buttons.forEach(btn => {
@@ -40,14 +45,42 @@ buttons.forEach(btn => {
   });
 });
 
-
+continueBtn.addEventListener('click', () => {
+  if (questions[currentQuestionIndex + 1]) {
+    currentQuestionIndex++;
+    answerBox.classList.toggle('hidden');
+  } else {
+    answerBox.classList.toggle('hidden');
+    showFinalResults();
+  }
+});
 
 function updateQuiz() {
   questionText.innerText = questions[currentQuestionIndex].question;
   buttons.forEach(btn => {
     btn.innerText = questions[currentQuestionIndex][`${btn.id}`];
   });
+}
 
+function showFinalResults() {
+  const finalScorePercent = Math.round((finalScore/questions.length) * 100);
+  questionText.style.fontSize = '30px';
+  questionText.innerText = `You got ${finalScorePercent}% right`;
+  optionsContainer.style.display = 'none';
+
+  for (const question of questions) {
+    const gotRight = question.gotright == "RIGHT" ? "1/1" : "0/1";
+    const scoreStyle = question.gotright == "RIGHT" ? "right" : "wrong";
+    finalResultsContainer.innerHTML += `
+    <div class="question-panel">
+    <span class="q-num">Question #${questions.indexOf(question) + 1}</span>
+    <span class="q-score ${scoreStyle}">${gotRight}</span>
+    </div>
+    `;
+  }
+  container.style.height = '80vh';
+  finalResultsContainer.style.display = 'block';
+  
 }
 
 function updateAnswerBox(correctness, optionText) {
@@ -55,15 +88,17 @@ function updateAnswerBox(correctness, optionText) {
     resultBtn.classList.add('right');
     resultBtn.classList.remove('wrong');
 
-    isCorrectH1.classList.add('right');
-    isCorrectH1.classList.remove('wrong');
+    isCorrectH1.classList.add('h1-right');
+    isCorrectH1.classList.remove('h1-wrong');
     isCorrectH1.innerText = "is RIGHT";
+
+    finalScore++;
   } else {
     resultBtn.classList.add('wrong');
     resultBtn.classList.remove('right');
 
-    isCorrectH1.classList.add('wrong');
-    isCorrectH1.classList.remove('right');
+    isCorrectH1.classList.add('h1-wrong');
+    isCorrectH1.classList.remove('h1-right');
     isCorrectH1.innerText = "is WRONG";
   }
   resultBtn.innerText = optionText;
@@ -72,8 +107,10 @@ function updateAnswerBox(correctness, optionText) {
 
 function checkIfCorrectAnswer(e) {
   if (e.innerText == questions[currentQuestionIndex].answer) {
+    questions[currentQuestionIndex].gotright = 'RIGHT';
     return true;
   } else {
+    questions[currentQuestionIndex].gotright = 'WRONG';
     return false;
   }
 }
