@@ -13,8 +13,19 @@ const questions = [
     answer: "d) 4",
     explanation: "2+2 = 4 because two adds to two, giving four.",
     gotright: 'wrong',
+    fontsize: '35px'
   },
-  
+  {
+    question: "if f(x) = x(7-4)^2, what is f(3)?",
+    option1: "a) -27",
+    option2: "b) 81",
+    option3: "c) 27",
+    option4: "d) 99",
+    answer: "c) 27",
+    explanation: "Following order of operations, 3(7-4)^2 = 3(3)^2, which leaves us with 3 * 3^2 = 3 * 9 = 27",
+    gotright: 'wrong',
+    fontsize: '25px'
+  },
 ];
 
 const container = document.getElementById('container');
@@ -49,6 +60,7 @@ continueBtn.addEventListener('click', () => {
   if (questions[currentQuestionIndex + 1]) {
     currentQuestionIndex++;
     answerBox.classList.toggle('hidden');
+    updateQuiz();
   } else {
     answerBox.classList.toggle('hidden');
     showFinalResults();
@@ -57,6 +69,7 @@ continueBtn.addEventListener('click', () => {
 
 function updateQuiz() {
   questionText.innerText = questions[currentQuestionIndex].question;
+  questionText.style.fontSize = questions[currentQuestionIndex].fontsize;
   buttons.forEach(btn => {
     btn.innerText = questions[currentQuestionIndex][`${btn.id}`];
   });
@@ -114,3 +127,4 @@ function checkIfCorrectAnswer(e) {
     return false;
   }
 }
+
