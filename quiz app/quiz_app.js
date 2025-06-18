@@ -26,6 +26,39 @@ const questions = [
     gotright: 'wrong',
     fontsize: '25px'
   },
+  {
+    question: "11 * 11 = ?",
+    option1: "a) 121",
+    option2: "b) 11",
+    option3: "c) 22",
+    option4: "d) 111",
+    answer: "a) 121",
+    explanation: "11 * 11 = 121 because you're adding 11 by itself 11 times.",
+    gotright: 'wrong',
+    fontsize: '35px'
+  },
+  {
+    question: "What is pi?",
+    option1: "a) 3.14",
+    option2: "b) pi",
+    option3: "c) the radius",
+    option4: "d) the food",
+    answer: "a) 3.14",
+    explanation: "pi (π) is a mathematical constant, approximately equal to 3.14159, to the nearest hundredth it is 3.14.",
+    gotright: 'wrong',
+    fontsize: '35px'
+  },
+  {
+    question: "(x + y)^2 = ?",
+    option1: "a) x^2 + y^2",
+    option2: "b) x^2 + 2xy + y^2",
+    option3: "c) x^2 + xy + y^2",
+    option4: "d) x + y^2",
+    answer: "b) x^2 + 2xy + y^2",
+    explanation: "(x+y)^2 is the same as (x+y)(x+y), using distributive property we get that (x+y)^2 = x^2 + 2xy + y^2.",
+    gotright: 'wrong',
+    fontsize: '30px'
+  },
 ];
 
 const container = document.getElementById('container');
