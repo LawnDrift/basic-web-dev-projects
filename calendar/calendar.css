@@ -76,9 +76,9 @@ body {
 }
 
 .weekdays {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  text-align: center;
 }
 
 .weekdays span {
@@ -89,6 +89,13 @@ body {
 
 /*START OF DAYS CONTAINER*/
 
+#days-container {
+  margin-top: 1rem;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.2rem;
 
+}
 
 /*END OF DAYS CONTAINER*/
