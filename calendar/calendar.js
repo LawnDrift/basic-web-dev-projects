@@ -34,6 +34,9 @@ const updateCalendar = () => {
   }
   //adds days after the month matching the weekday row
   for (let i = 1; i <= 7 - lastDayIndex; i++) {
+    if (lastDayIndex == 0) {
+      break;
+    }
     const nextDate = new Date(currentYear, currentMonth + 1, i);
     daysContainer.innerHTML += `<div class="day inactive">${nextDate.getDate()}</div>`;
   }
