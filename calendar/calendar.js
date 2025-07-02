@@ -1,10 +1,11 @@
 const daysContainer = document.getElementById('days-container');
 const monthYearText = document.getElementById('month-year-text');
-
+const previousMonthBtn = document.getElementById('previous-month-btn');
+const nextMonthBtn = document.getElementById('next-month-btn');
 
 let currentDate = new Date();
 
-function updateCalendar() {
+const updateCalendar = () => {
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
 
@@ -39,3 +40,21 @@ function updateCalendar() {
 }
 
 updateCalendar();
+
+previousMonthBtn.addEventListener('click', () => {
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+
+  currentDate = new Date(currentYear, currentMonth - 1, 1);
+  daysContainer.innerHTML = "";
+  updateCalendar();
+});
+
+nextMonthBtn.addEventListener('click', () => {
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+
+  currentDate = new Date(currentYear, currentMonth + 1);
+  daysContainer.innerHTML = "";
+  updateCalendar();
+});

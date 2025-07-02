@@ -109,6 +109,11 @@ body {
   height: 40px;
   border-radius: 50%;
   text-align: center;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: var(--btn-bg-hover);
 }
 
 .day.inactive {
@@ -118,6 +123,7 @@ body {
 .day.active {
   background-color: rgb(77,143,251);
   color: #fff;
+  cursor: default;
 }
 
 /*END OF DAYS CONTAINER*/
