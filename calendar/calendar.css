@@ -90,6 +90,7 @@ body {
 
 /*START OF DAYS CONTAINER*/
 
+
 #days-container {
   margin-top: 1rem;
   text-align: center;
@@ -124,6 +125,12 @@ body {
 .day.active {
   background-color: rgb(77,143,251);
   color: #fff;
+}
+
+@media (max-width: 725px) {
+  #days-container {
+    gap: 1px;
+  }
 }
 
 /*END OF DAYS CONTAINER*/
