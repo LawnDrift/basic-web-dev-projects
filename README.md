@@ -5,9 +5,16 @@ For this repository I'm going to be adding new basic projects to practice html, 
 This is a basic iphone UI style calculator that can perform the next operations: adding, subtracting, multiplying, dividing, changing to percent
 and giving output to the screen. Totally functional. [Link Here](https://lawndrift.github.io/basic-web-dev-projects/calculator/calculator.html)
 
-![alt-text](https://ik.imagekit.io/LawnDrift/Iphone%20UI%20Calculator.png?updatedAt=1750032492891 "Basic Iphone UI style calculator") 
+<img src="https://ik.imagekit.io/LawnDrift/Iphone%20UI%20Calculator.png?updatedAt=1750032492891" width="500" alt="Basic Iphone UI style calculator Image">
 
 ## Basic Quiz App 💯
 This is a basic quiz app with 4 options, whenever you click one of the buttons, a panel appears that tells you whether your answer was right or wrong.
 When you answer all questions, a final results panel appears showing you your final score and which question you got right or wrong. [Link Here](https://lawndrift.github.io/basic-web-dev-projects/quiz%20app/quiz_app.html)
-![alt-text](https://ik.imagekit.io/LawnDrift/quiz%20app%20image.png?updatedAt=1750032493232 "Basic Quiz App")
+
+<img src="https://ik.imagekit.io/LawnDrift/quiz%20app%20image.png?updatedAt=1750032493232" width="500" alt="Basic Quiz App Image">
+
+## Basic Calendar 📅
+This is a basic calendar that was made with the Date() constructor in JS, you can see what day is it today and click the buttons to go to the next 
+month or previous month. [Link Here](https://lawndrift.github.io/basic-web-dev-projects/calendar/calendar.html)
+
+<img src="https://ik.imagekit.io/LawnDrift/calendar.png?updatedAt=1751760533414" width="500" alt="Calendar Image">
