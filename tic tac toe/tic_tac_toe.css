@@ -35,6 +35,9 @@ body {
 #navbar h2 {
   color: white;
 }
+#difficulty-state {
+  color: white;
+}
 
 main {
   display: flex;

@@ -1,12 +1,18 @@
-const board = [
+const originalBoard = [
   [" ", " ", " "],
   [" ", " ", " "],
   [" ", " ", " "]
 ];
+
+let board = structuredClone(originalBoard);
 let human = "X";
 let ai = "O";
 let currentPlayer = human;
 let difficulty = "medium";
+
+let playerScore = 0;
+let computerScore = 0;
+let drawScore = 0;
 const scores = {
   'X': -1,
   'O': 1,
@@ -35,24 +41,37 @@ const oElementStringHover = `
         <div class="o hover"></div>
 `;
 
+const difficultyStateText = document.getElementById("difficulty-state");
 const cells = document.querySelectorAll(".cell");
+const easyBtn = document.getElementById("easy-btn");
+const mediumBtn = document.getElementById("medium-btn");
+const ImpossibleBtn = document.getElementById("impossible-btn");
+const computerStatText = document.getElementById("computer-stat");
+const drawStatText = document.getElementById("draw-stat");
+const playerStatText = document.getElementById("player-stat");
 
 cells.forEach((cell) => {
   //hover effect when mouse enters and leaves
   cell.addEventListener('mouseenter', () => {
-    if (cell.hasChildNodes()) {
+    if (cell.hasChildNodes() || checkWinner() !== null) {
       return;
     }
     cell.innerHTML = currentPlayer == "X" ? xELementStringHover : oElementStringHover;
 
   });
   cell.addEventListener('mouseleave', () => {
+    if (checkWinner() !== null) {
+      return
+    }
     if (cell.hasChildNodes() && !cell.classList.contains("active")) {
       cell.innerHTML = "";
     }
   });
   //checks clicking
   cell.addEventListener('click', () => {
+    if (checkWinner() !== null) {
+      return
+    }
     if (currentPlayer == human && !cell.classList.contains("active")) {
       const coordinateRegex = /cell-(\d)-(\d)/;
       const cellRowIndex = cell.id.replace(coordinateRegex, "$1");
@@ -77,51 +96,25 @@ cells.forEach((cell) => {
   
 });
 
+easyBtn.addEventListener("click", () => {
+  difficulty = "easy";
+  difficultyStateText.innerText = `Current Difficulty: Easy`;
+  resetGame();
 
+});
 
+mediumBtn.addEventListener("click", () => {
+  difficulty = "medium";
+  difficultyStateText.innerText = `Current Difficulty: Medium`;
+  resetGame();
+});
 
-/*
-while (true) {
-  if (currentPlayer == human) {
-    let rowResponse = prompt("Please enter an integer between 0 and 2 as row:");
-    let columnResponse = prompt("Please enter an integer between 0 and 2 as column:");
-    let rowInt = parseInt(rowResponse, 10);
-    let columnInt = parseInt(columnResponse, 10);
-    if (isNaN(rowInt) || isNaN(columnInt)) {
-      console.log("Invalid Input, try again.");
-      continue;
-    } 
-    else if ((rowInt > 2 || rowInt < 0) || (columnInt > 2 || columnInt < 0)) {
-      console.log("The integer value must be between 0 and 2 (0, 1, 2).")
-      continue;
-    }
-    
-    else {
-      if (board[rowInt][columnInt] !== " ") {
-        continue;
-      }
-      board[rowInt][columnInt] = human;
-  
-      if (checkWinner() !== null) {
-        drawBoard();
-        console.log(`${checkWinner() !== "tie" ?
-           checkWinner() + "wins the game!" : "Tie!!!"}`);
+ImpossibleBtn.addEventListener("click", () => {
+  difficulty = "impossible";
+  difficultyStateText.innerText = `Current Difficulty: Impossible`;
+  resetGame();
+});
 
-        break;
-      }
-      currentPlayer = ai;
-      bestMove();
-      
-    }
-    drawBoard();
-    if (checkWinner() !== null) {
-      console.log(`${checkWinner()} wins the game!`);
-      break;
-    }
-  }
-   
-}
-*/
 function updateBoard() {
   cells.forEach(cell => {
     const coordinateRegex = /cell-(\d)-(\d)/;
@@ -292,4 +285,16 @@ function checkWinner() {
     return winner;
   }
   
+}
+
+function resetGame() {
+  board = structuredClone(originalBoard);
+  cells.forEach(cell => {
+    cell.innerHTML = "";
+    cell.classList.remove("active");
+  });
+  playerScore = 0;
+  drawScore = 0;
+  computerScore = 0;
+
 }
