@@ -61,10 +61,11 @@ main {
   border: 2px solid white;
   align-items: center;
   justify-content: center;
+  
 }
 
 /*Draws diagonals to form X shape*/
-.x::before {
+.x .diagonal-1 {
   content: "";
   left: 50%;
   top: 50%;
@@ -75,7 +76,8 @@ main {
   position: absolute;
   
 }
-.x::after {
+
+.x .diagonal-2 {
   content: "";
   left: 50%;
   top: 50%;
