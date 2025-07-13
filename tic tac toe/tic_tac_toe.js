@@ -6,7 +6,7 @@ const board = [
 let human = "X";
 let ai = "O";
 let currentPlayer = human;
-let difficulty = "impossible";
+let difficulty = "medium";
 const scores = {
   'X': -1,
   'O': 1,
@@ -137,7 +137,26 @@ function updateBoard() {
 
 
 function bestMove() {
-  // 1) Immediate win?
+  //Easy mode here:
+  if (difficulty == "easy") {
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        const randRowIndx = Math.floor(Math.random() * 3);
+        const randColumnIdx = Math.floor(Math.random() * 3);
+        if (board[randRowIndx][randColumnIdx] === " ") {
+          board[randRowIndx][randColumnIdx] = ai;
+          currentPlayer = human;
+          return;
+        }
+      }
+    }
+    
+  }
+
+
+  //Medium & Impossible mode lie below here:
+  // Check for Immediate Win
 
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -157,12 +176,15 @@ function bestMove() {
   //AI to make its turn
   let bestScore = -Infinity;
   let move;
+  const maxDepth = difficulty === "medium" 
+  ? 2 : Infinity; //maxDepth of 2 means that the ai only looks 2 steps ahead.
+  
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
       //Is the spot available?
       if (board[i][j] == " ") {
         board[i][j] = ai;
-        let score = minimax(board, 0, false);
+        let score = minimax(0, false, maxDepth);
         board[i][j] = " ";
         if (score > bestScore) {
           bestScore = score;
@@ -177,11 +199,25 @@ function bestMove() {
 
 
 
-function minimax(board, depth, isMaximizing) {
-  let result = checkWinner();
+function minimax(depth, isMaximizing, maxDepth) {
+  const result = checkWinner();
   if (result !== null) {
-    return scores[result];
+    if (result == 'tie') {
+      return 0;
+    }
   }
+  if (result == ai) {
+    return 10 - depth;
+  }
+  if (result == human) {
+    return depth - 10;
+  }
+  // if we reached our depth cap, return a neutral
+  //heuristic (0)
+  if (depth >= maxDepth) {
+    return 0;
+  }
+
 
   if (isMaximizing) {
     let bestScore = -Infinity;
@@ -190,7 +226,7 @@ function minimax(board, depth, isMaximizing) {
         // Is the spot available?
         if (board[i][j] == " ") {
           board[i][j] = ai;
-          let score = minimax(board, depth + 1, false);
+          let score = minimax(depth + 1, false, maxDepth);
           board[i][j] = " ";
           bestScore = Math.max(score, bestScore);
         }
@@ -204,7 +240,7 @@ function minimax(board, depth, isMaximizing) {
         // Is the spot available?
         if (board[i][j] == " ") {
           board[i][j] = human;
-          let score = minimax(board, depth + 1, true);
+          let score = minimax(depth + 1, true, maxDepth);
           board[i][j] = " ";
           bestScore = Math.min(score, bestScore);
         }
