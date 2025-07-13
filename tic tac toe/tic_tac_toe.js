@@ -136,6 +136,23 @@ function updateBoard() {
 
 
 function bestMove() {
+  // 1) Immediate win?
+
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      //Is the spot available?
+      if (board[i][j] == " ") {
+        board[i][j] = ai;
+        if (checkWinner() == ai) {
+          board[i][j] = ai;
+          currentPlayer = human;
+          return;
+        }
+        board[i][j] = " ";
+      }
+    }
+  }
+  
   //AI to make its turn
   let bestScore = -Infinity;
   let move;
@@ -145,7 +162,7 @@ function bestMove() {
       if (board[i][j] == " ") {
         board[i][j] = ai;
         let score = minimax(board, 0, false);
-        board[i][j] = ' ';
+        board[i][j] = " ";
         if (score > bestScore) {
           bestScore = score;
           move = { i, j };
@@ -212,21 +229,21 @@ function checkWinner() {
       && (board[0][i] == "O" || board[0][i] == "X")) {
       winner = board[0][i]; //either X or O
     }
-    //both if statements check if the diagonals have three X or O
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] 
-      && (board[0][0] == "O" ||board[0][0] == "X")) {
-      winner = board[0][0]; //either X or O
-    }
-    if (board[2][0] == board[1][1] && board[1][1] == board[0][2] 
-      && (board[2][0] == "O" || board[2][0] == "X")) {
-      winner = board[2][0]; //either X or O
-    }
+
+  }
+  if (board[0][0] == board[1][1] && board[1][1] == board[2][2] 
+    && (board[0][0] == "O" ||board[0][0] == "X")) {
+    winner = board[0][0]; //either X or O
+  }
+  if (board[2][0] == board[1][1] && board[1][1] == board[0][2] 
+    && (board[2][0] == "O" || board[2][0] == "X")) {
+    winner = board[2][0]; //either X or O
   }
 
   let openSpots = 0;
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
-      if (board[i][j] == ' ') {
+      if (board[i][j] == " ") {
         openSpots++;
       }
     }
