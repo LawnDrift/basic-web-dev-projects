@@ -22,7 +22,7 @@ body {
   background: linear-gradient(45deg, var(--bg-color-1) 50%, var(--bg-color-2));
 }
 
-#gamemodes-navbar {
+#navbar {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -32,7 +32,7 @@ body {
   background-color: var(--nav-bg-color);
 }
 
-#gamemodes-navbar h2 {
+#navbar h2 {
   color: white;
 }
 

@@ -6,6 +6,7 @@ const board = [
 let human = "X";
 let ai = "O";
 let currentPlayer = human;
+let difficulty = "impossible";
 const scores = {
   'X': -1,
   'O': 1,
