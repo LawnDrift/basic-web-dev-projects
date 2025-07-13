@@ -18,7 +18,7 @@ let scores = {
 console.log("Welcome to Tic Tac Toe Game");
 
 drawBoard();
-
+/*
 while (true) {
   if (currentPlayer == human) {
     let rowResponse = prompt("Please enter an integer between 0 and 2 as row:");
@@ -57,12 +57,9 @@ while (true) {
       break;
     }
   }
-
-
-
    
 }
-
+*/
 function drawBoard() {
   console.log(`
       |     |  |     |  |     |
