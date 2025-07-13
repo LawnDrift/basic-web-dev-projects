@@ -3,12 +3,9 @@ const board = [
   [" ", " ", " "],
   [" ", " ", " "]
 ];
-
-
 let human = "X";
 let ai = "O";
 let currentPlayer = human;
-
 const scores = {
   'X': -1,
   'O': 1,
@@ -40,17 +37,40 @@ const oElementStringHover = `
 const cells = document.querySelectorAll(".cell");
 
 cells.forEach((cell) => {
-
+  //hover effect when mouse enters and leaves
   cell.addEventListener('mouseenter', () => {
     if (cell.hasChildNodes()) {
       return;
     }
-    cell.innerHTML = currentPlayer == human ? xELementStringHover : oElementStringHover;
+    cell.innerHTML = currentPlayer == "X" ? xELementStringHover : oElementStringHover;
 
   });
   cell.addEventListener('mouseleave', () => {
-    if (cell.hasChildNodes()) {
+    if (cell.hasChildNodes() && !cell.classList.contains("active")) {
       cell.innerHTML = "";
+    }
+  });
+  //checks clicking
+  cell.addEventListener('click', () => {
+    if (currentPlayer == human && !cell.classList.contains("active")) {
+      const coordinateRegex = /cell-(\d)-(\d)/;
+      const cellRowIndex = cell.id.replace(coordinateRegex, "$1");
+      const cellColumnIndex = cell.id.replace(coordinateRegex, "$2");
+      board[parseInt(cellRowIndex, 10)][parseInt(cellColumnIndex, 10)] = human;
+    
+      if (checkWinner() !== null) {
+        console.log(`${checkWinner() !== "tie" ?
+           checkWinner() + "wins the game!" : "Tie!!!"}`);
+
+      } 
+      else {
+        currentPlayer = ai;
+        bestMove();
+      }
+      updateBoard();
+      if (checkWinner() !== null) {
+        console.log(`${checkWinner()} wins the game!`);
+      }
     }
   });
   
@@ -59,7 +79,6 @@ cells.forEach((cell) => {
 
 
 
-drawBoard();
 /*
 while (true) {
   if (currentPlayer == human) {
@@ -102,24 +121,17 @@ while (true) {
    
 }
 */
-function drawBoard() {
-  console.log(`
-      |     |  |     |  |     |
-      |  ${board[0][0]}  |  |  ${board[0][1]}  |  |  ${board[0][2]}  |
-      |     |  |     |  |     |
-      -------------------------
-      |     |  |     |  |     |
-      |  ${board[1][0]}  |  |  ${board[1][1]}  |  |  ${board[1][2]}  |
-      |     |  |     |  |     |
-      -------------------------
-      |     |  |     |  |     |
-      |  ${board[2][0]}  |  |  ${board[2][1]}  |  |  ${board[2][2]}  |
-      |     |  |     |  |     |
-      -------------------------
-              
-    
-    `);
-  
+function updateBoard() {
+  cells.forEach(cell => {
+    const coordinateRegex = /cell-(\d)-(\d)/;
+    const cellRowIndex = parseInt(cell.id.replace(coordinateRegex, "$1"), 10);
+    const cellColumnIndex = parseInt(cell.id.replace(coordinateRegex, "$2"), 10);
+    if (board[cellRowIndex][cellColumnIndex] !== " ") {
+      cell.innerHTML = board[cellRowIndex][cellColumnIndex] == "X" ?
+      xELementString : oElementString;
+      cell.classList.add("active");      
+    }
+  });
 }
 
 
