@@ -77,6 +77,10 @@ main {
   
 }
 
+.diagonal-1.hover, .diagonal-2.hover {
+  opacity: 0.3;
+}
+
 .x .diagonal-2 {
   content: "";
   left: 50%;
@@ -90,8 +94,13 @@ main {
 }
 /*Draws a circle*/
 .o {
-  width: 80%;
-  height: 80%;
+  position: absolute;
+  width: 75%;
+  height: 75%;
   border-radius: 50%;
   border: 8px solid var(--o-color);
+}
+
+.o.hover {
+  opacity: 0.3;
 }

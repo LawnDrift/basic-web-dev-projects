@@ -9,13 +9,55 @@ let human = "X";
 let ai = "O";
 let currentPlayer = human;
 
-let scores = {
+const scores = {
   'X': -1,
   'O': 1,
   'tie': 0
 };
 
-console.log("Welcome to Tic Tac Toe Game");
+const xELementString = `
+        <div class="x">
+          <div class="diagonal-1"></div>
+          <div class="diagonal-2"></div>
+        </div>
+`;
+
+const xELementStringHover = `
+        <div class="x">
+          <div class="diagonal-1 hover"></div>
+          <div class="diagonal-2 hover"></div>
+        </div>
+`;
+
+const oElementString = `
+        <div class="o"></div>
+`;
+
+const oElementStringHover = `
+        <div class="o hover"></div>
+`;
+
+const cells = document.querySelectorAll(".cell");
+
+cells.forEach((cell) => {
+
+  cell.addEventListener('mouseenter', () => {
+    if (cell.hasChildNodes()) {
+      return;
+    }
+    cell.innerHTML = currentPlayer == human ? xELementStringHover : oElementStringHover;
+
+  });
+  cell.addEventListener('mouseleave', () => {
+    if (cell.hasChildNodes()) {
+      cell.innerHTML = "";
+    }
+  });
+  
+});
+
+
+
 
 drawBoard();
 /*
