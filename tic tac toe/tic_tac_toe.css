@@ -12,7 +12,7 @@
   --x-color: red;
   --o-color: greenyellow;
 
-  --winner-panel-color: rgba(29, 15, 38, 0.6);
+  --winner-panel-color: rgba(29, 15, 38, 0.745);
   --winner-panel-header-color: rgb(198, 160, 255);
   --header-font-color: rgb(226, 193, 255);
   --subheader-font-color: rgb(169, 140, 189);
@@ -84,7 +84,14 @@ main h1 {
   border: 2px solid white;
   align-items: center;
   justify-content: center;
-  
+  transition: background-color 0.5s ease 0ms;
+}
+
+.cell.o-winner {
+  background-color: rgba(0, 255, 0, 0.184);
+}
+.cell.x-winner {
+  background-color: rgba(255, 0, 0, 0.184);
 }
 
 /*Draws diagonals to form X shape*/
@@ -181,6 +188,8 @@ main h1 {
   position: relative;
   margin: 0 0 -10px 0;
 }
+
+
 
 button {
   border: none;

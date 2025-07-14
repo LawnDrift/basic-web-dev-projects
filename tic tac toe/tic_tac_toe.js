@@ -9,11 +9,12 @@ let human = "X";
 let ai = "O";
 let currentPlayer = human;
 let difficulty = "medium";
-let badMoves = {};
 
 let playerScore = 0;
 let computerScore = 0;
 let drawScore = 0;
+
+let winnerCoordinates = [];
 
 const xELementString = `
         <div class="x">
@@ -149,6 +150,11 @@ function showWinner() {
       winnerHeader.innerText = "Draw!";
     }
   }
+
+  for (coordinate of winnerCoordinates) {
+    const winnerCell = document.getElementById(`cell-${coordinate.i}-${coordinate.j}`);
+    winnerCell.classList.toggle(`${checkWinner().toLowerCase()}-winner`);
+  }
   
 }
 
@@ -274,6 +280,7 @@ function minimax(depth, isMaximizing, maxDepth) {
 
 function checkWinner() {
   let winner = null;
+  winnerCoordinates = [];
   for (let i = 0; i < 3; i++) {
     
     //check if a row has 3 of the same symbol (O or X)
@@ -281,21 +288,33 @@ function checkWinner() {
       && (board[i][0] == "O" || board[i][0] == "X")
     ) {
       winner = board[i][0]; //either X or O
+      winnerCoordinates.push({i, j: 0});
+      winnerCoordinates.push({i, j: 1});
+      winnerCoordinates.push({i, j: 2});
     }
     //check if a column has 3 of the same symbol (O or X)
     if (board[0][i] == board[1][i] && board[1][i] == board[2][i] 
       && (board[0][i] == "O" || board[0][i] == "X")) {
       winner = board[0][i]; //either X or O
+      winnerCoordinates.push({i: 0, j: i});
+      winnerCoordinates.push({i: 1, j: i});
+      winnerCoordinates.push({i: 2, j: i});
     }
 
   }
   if (board[0][0] == board[1][1] && board[1][1] == board[2][2] 
     && (board[0][0] == "O" ||board[0][0] == "X")) {
     winner = board[0][0]; //either X or O
+    winnerCoordinates.push({i: 0, j: 0});
+    winnerCoordinates.push({i: 1, j: 1});
+    winnerCoordinates.push({i: 2, j: 2});
   }
   if (board[2][0] == board[1][1] && board[1][1] == board[0][2] 
     && (board[2][0] == "O" || board[2][0] == "X")) {
     winner = board[2][0]; //either X or O
+    winnerCoordinates.push({i: 2, j: 0});
+    winnerCoordinates.push({i: 1, j: 1});
+    winnerCoordinates.push({i: 0, j: 2});
   }
 
   let openSpots = 0;
