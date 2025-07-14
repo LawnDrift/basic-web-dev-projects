@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/monaco');
+
 :root {
   --board-size-small: 300px;
   --board-size-normal: 400px;
@@ -20,6 +22,7 @@ body {
   height: 100vh;
   margin: 0;
   background: linear-gradient(45deg, var(--bg-color-1) 50%, var(--bg-color-2));
+  font-family: 'Monaco', sans-serif;
 }
 
 #navbar {
@@ -33,10 +36,10 @@ body {
 }
 
 #navbar h2 {
-  color: white;
+  color: rgb(226, 193, 255);
 }
 #difficulty-state {
-  color: white;
+  color: rgb(169, 140, 189);
 }
 
 main {
@@ -46,6 +49,11 @@ main {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+main h1 {
+  color: white;
+  font-size: 40px;
 }
 
 .board {
@@ -107,4 +115,21 @@ main {
 
 .o.hover {
   opacity: 0.3;
+}
+
+.stats-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 1.5rem;
+  font-size: 1.2rem;
+  color: white;
 }
