@@ -13,11 +13,6 @@ let difficulty = "medium";
 let playerScore = 0;
 let computerScore = 0;
 let drawScore = 0;
-const scores = {
-  'X': -1,
-  'O': 1,
-  'tie': 0
-};
 
 const xELementString = `
         <div class="x">
@@ -80,8 +75,9 @@ cells.forEach((cell) => {
     
       if (checkWinner() !== null) {
         console.log(`${checkWinner() !== "tie" ?
-           checkWinner() + "wins the game!" : "Tie!!!"}`);
-
+        checkWinner() + "wins the game!" : "Tie!!!"}`);
+        if (checkWinner() == "tie") drawScore += 1;
+        updateScores();
       } 
       else {
         currentPlayer = ai;
@@ -90,6 +86,9 @@ cells.forEach((cell) => {
       updateBoard();
       if (checkWinner() !== null) {
         console.log(`${checkWinner()} wins the game!`);
+        if (checkWinner() == human) playerScore += 1;
+        if (checkWinner() == ai) computerScore += 1;
+        updateScores();
       }
     }
   });
@@ -100,19 +99,27 @@ easyBtn.addEventListener("click", () => {
   difficulty = "easy";
   difficultyStateText.innerText = `Current Difficulty: Easy`;
   resetGame();
-
+  playerScore = 0;
+  computerScore = 0;
+  drawScore = 0;
 });
 
 mediumBtn.addEventListener("click", () => {
   difficulty = "medium";
   difficultyStateText.innerText = `Current Difficulty: Medium`;
   resetGame();
+  playerScore = 0;
+  computerScore = 0;
+  drawScore = 0;
 });
 
 ImpossibleBtn.addEventListener("click", () => {
   difficulty = "impossible";
   difficultyStateText.innerText = `Current Difficulty: Impossible`;
   resetGame();
+  playerScore = 0;
+  computerScore = 0;
+  drawScore = 0;
 });
 
 function updateBoard() {
@@ -126,6 +133,12 @@ function updateBoard() {
       cell.classList.add("active");      
     }
   });
+}
+
+function updateScores() {
+  computerStatText.innerText = computerScore;
+  playerStatText.innerText = playerScore;
+  drawStatText.innerText = drawScore;
 }
 
 
@@ -149,24 +162,8 @@ function bestMove() {
 
 
   //Medium & Impossible mode lie below here:
-  // Check for Immediate Win
 
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      //Is the spot available?
-      if (board[i][j] == " ") {
-        board[i][j] = ai;
-        if (checkWinner() == ai) {
-          board[i][j] = ai;
-          currentPlayer = human;
-          return;
-        }
-        board[i][j] = " ";
-      }
-    }
-  }
-  
-  //AI to make its turn
+
   let bestScore = -Infinity;
   let move;
   const maxDepth = difficulty === "medium" 
@@ -186,6 +183,7 @@ function bestMove() {
       }
     }
   }
+
   board[move.i][move.j] = ai;
   currentPlayer = human;
 }
@@ -195,15 +193,9 @@ function bestMove() {
 function minimax(depth, isMaximizing, maxDepth) {
   const result = checkWinner();
   if (result !== null) {
-    if (result == 'tie') {
-      return 0;
-    }
-  }
-  if (result == ai) {
-    return 10 - depth;
-  }
-  if (result == human) {
-    return depth - 10;
+    if (result == 'tie') return 0;
+    if (result == ai) return 10 - depth;
+    if (result == human) return depth - 10;
   }
   // if we reached our depth cap, return a neutral
   //heuristic (0)
@@ -227,7 +219,7 @@ function minimax(depth, isMaximizing, maxDepth) {
     }
     return bestScore;
   } else {
-    let bestScore = Infinity;
+    let worstScore = Infinity;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         // Is the spot available?
@@ -235,11 +227,11 @@ function minimax(depth, isMaximizing, maxDepth) {
           board[i][j] = human;
           let score = minimax(depth + 1, true, maxDepth);
           board[i][j] = " ";
-          bestScore = Math.min(score, bestScore);
+          worstScore = Math.min(score, worstScore);
         }
       }
     }
-    return bestScore;
+    return worstScore;
   }
 }
 
@@ -293,8 +285,5 @@ function resetGame() {
     cell.innerHTML = "";
     cell.classList.remove("active");
   });
-  playerScore = 0;
-  drawScore = 0;
-  computerScore = 0;
 
 }
