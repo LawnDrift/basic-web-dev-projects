@@ -34,6 +34,10 @@ body {
   font-family: 'Monaco', sans-serif;
 }
 
+button {
+  font-family: 'Monaco', sans-serif;
+}
+
 #navbar {
   display: flex;
   flex-direction: column;
@@ -50,6 +54,15 @@ body {
 }
 #difficulty-state {
   color: var(--subheader-font-color);
+}
+
+.difficulty-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.difficulty-section button {
+  margin: .5rem 1rem;
 }
 
 main {
