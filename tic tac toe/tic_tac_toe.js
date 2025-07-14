@@ -102,6 +102,7 @@ easyBtn.addEventListener("click", () => {
   playerScore = 0;
   computerScore = 0;
   drawScore = 0;
+  updateScores();
 });
 
 mediumBtn.addEventListener("click", () => {
@@ -111,6 +112,7 @@ mediumBtn.addEventListener("click", () => {
   playerScore = 0;
   computerScore = 0;
   drawScore = 0;
+  updateScores();
 });
 
 ImpossibleBtn.addEventListener("click", () => {
@@ -120,6 +122,7 @@ ImpossibleBtn.addEventListener("click", () => {
   playerScore = 0;
   computerScore = 0;
   drawScore = 0;
+  updateScores();
 });
 
 function updateBoard() {
