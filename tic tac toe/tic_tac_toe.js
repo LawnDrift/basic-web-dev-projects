@@ -9,6 +9,7 @@ let human = "X";
 let ai = "O";
 let currentPlayer = human;
 let difficulty = "medium";
+let badMoves = {};
 
 let playerScore = 0;
 let computerScore = 0;
@@ -41,9 +42,12 @@ const cells = document.querySelectorAll(".cell");
 const easyBtn = document.getElementById("easy-btn");
 const mediumBtn = document.getElementById("medium-btn");
 const ImpossibleBtn = document.getElementById("impossible-btn");
+const playAgainBtn = document.getElementById("play-again");
 const computerStatText = document.getElementById("computer-stat");
 const drawStatText = document.getElementById("draw-stat");
 const playerStatText = document.getElementById("player-stat");
+const winnerPanel = document.querySelector(".winner-panel");
+const xOContainer = document.querySelector(".x-o-container");
 
 cells.forEach((cell) => {
   //hover effect when mouse enters and leaves
@@ -74,22 +78,19 @@ cells.forEach((cell) => {
       board[parseInt(cellRowIndex, 10)][parseInt(cellColumnIndex, 10)] = human;
     
       if (checkWinner() !== null) {
-        console.log(`${checkWinner() !== "tie" ?
-        checkWinner() + "wins the game!" : "Tie!!!"}`);
         if (checkWinner() == "tie") drawScore += 1;
-        updateScores();
+        if (checkWinner() == human) playerScore += 1;
+        updateScores();        
       } 
       else {
         currentPlayer = ai;
         bestMove();
-      }
-      updateBoard();
-      if (checkWinner() !== null) {
-        console.log(`${checkWinner()} wins the game!`);
-        if (checkWinner() == human) playerScore += 1;
         if (checkWinner() == ai) computerScore += 1;
         updateScores();
+        
       }
+      updateBoard();
+      showWinner();
     }
   });
   
@@ -125,6 +126,32 @@ ImpossibleBtn.addEventListener("click", () => {
   updateScores();
 });
 
+playAgainBtn.addEventListener("click", () => {
+  showWinner();
+  resetGame();
+});
+
+function showWinner() {
+  const winnerHeader = document.getElementById("winner-h1");
+  if (checkWinner() !== null) {
+    winnerPanel.classList.toggle("show");
+    if (checkWinner() == "X") {
+      xOContainer.innerHTML = xELementString;
+      winnerHeader.innerText = "Winner!";
+    }
+      
+    if (checkWinner() == "O")  {
+      xOContainer.innerHTML = oElementString;
+      winnerHeader.innerText = "Winner!";
+    }
+    if (checkWinner() == "tie") {
+      xOContainer.innerHTML = xELementString + oElementString;
+      winnerHeader.innerText = "Draw!";
+    }
+  }
+  
+}
+
 function updateBoard() {
   cells.forEach(cell => {
     const coordinateRegex = /cell-(\d)-(\d)/;
@@ -142,7 +169,9 @@ function updateScores() {
   computerStatText.innerText = computerScore;
   playerStatText.innerText = playerScore;
   drawStatText.innerText = drawScore;
+
 }
+
 
 
 function bestMove() {
@@ -168,7 +197,7 @@ function bestMove() {
 
 
   let bestScore = -Infinity;
-  let move;
+  let bestMoves = [];
   const maxDepth = difficulty === "medium" 
   ? 2 : Infinity; //maxDepth of 2 means that the ai only looks 2 steps ahead.
   
@@ -181,13 +210,17 @@ function bestMove() {
         board[i][j] = " ";
         if (score > bestScore) {
           bestScore = score;
-          move = { i, j };
+          bestMoves.length = 0;
+          bestMoves.push({ i, j });
+        } else if (score === bestScore) {
+          bestMoves.push({i, j});
         }
       }
     }
   }
 
-  board[move.i][move.j] = ai;
+  const choice = bestMoves[Math.floor(Math.random() * bestMoves.length)];
+  board[choice.i][choice.j] = ai;
   currentPlayer = human;
 }
 
@@ -288,5 +321,6 @@ function resetGame() {
     cell.innerHTML = "";
     cell.classList.remove("active");
   });
+  currentPlayer = human;
 
 }

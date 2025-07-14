@@ -11,6 +11,15 @@
 
   --x-color: red;
   --o-color: greenyellow;
+
+  --winner-panel-color: rgba(29, 15, 38, 0.6);
+  --winner-panel-header-color: rgb(198, 160, 255);
+  --header-font-color: rgb(226, 193, 255);
+  --subheader-font-color: rgb(169, 140, 189);
+
+  --btn-bg-color: rgb(156, 72, 253);
+  --btn-bg-color-hover: rgb(148, 59, 251);
+  --btn-bg-color-active: rgb(137, 34, 255);
 }
 
 * {
@@ -33,13 +42,14 @@ body {
   width: 200px;
   padding: 0.75rem;
   background-color: var(--nav-bg-color);
+  z-index: 1;
 }
 
 #navbar h2 {
-  color: rgb(226, 193, 255);
+  color: var(--header-font-color);
 }
 #difficulty-state {
-  color: rgb(169, 140, 189);
+  color: var(--subheader-font-color);
 }
 
 main {
@@ -49,6 +59,7 @@ main {
   height: 100%;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 main h1 {
@@ -77,6 +88,8 @@ main h1 {
 }
 
 /*Draws diagonals to form X shape*/
+
+
 .x .diagonal-1 {
   content: "";
   left: 50%;
@@ -133,3 +146,66 @@ main h1 {
   font-size: 1.2rem;
   color: white;
 }
+
+.winner-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: var(--winner-panel-color);
+  width: 300%;
+  text-align: center;
+  padding: 10px 0;
+  transform: translateX(-200%);
+  transition: transform 2s ease 0ms;
+}
+
+.winner-panel.show {
+  transform: translateX(0);
+}
+
+.winner-panel h1 {
+  font-size: 50px;
+  margin: 0 0 1rem 0;
+  color: var(--winner-panel-header-color);
+  text-shadow: 0 0 2px var(--btn-bg-color);
+}
+
+.x-o-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 0 0 -10px 0;
+}
+
+button {
+  border: none;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.25rem;
+  font-family: inherit;
+  background-color: var(--btn-bg-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease 0ms;
+}
+
+button:hover {
+  transform: scale(1.02);
+  background-color: var(--btn-bg-color-hover);
+}
+
+button:active {
+  background-color: var(--btn-bg-color-active);
+}
+
+#play-again {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+
