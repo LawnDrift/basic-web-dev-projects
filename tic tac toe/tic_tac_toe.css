@@ -4,21 +4,19 @@
   --board-size-small: 300px;
   --board-size-normal: 400px;
 
-  --bg-color-1: rgb(66, 16, 90);
-  --bg-color-2: rgb(38, 38, 139);
+  --bg-color-1: rgb(255, 102, 158);
+  --bg-color-2: rgb(255, 155, 102);
+  --bg-color-3: rgb(255, 219, 129);
   --nav-bg-color: rgb(44, 18, 59);
 
-  --x-color: red;
-  --o-color: greenyellow;
+  --x-color: white;
+  --o-color: white;
 
-  --winner-panel-color: rgba(29, 15, 38, 0.745);
-  --winner-panel-header-color: rgb(198, 160, 255);
-  --header-font-color: rgb(226, 193, 255);
-  --subheader-font-color: rgb(169, 140, 189);
-
-  --btn-bg-color: rgb(156, 72, 253);
-  --btn-bg-color-hover: rgb(148, 59, 251);
-  --btn-bg-color-active: rgb(137, 34, 255);
+  --winner-panel-color: rgba(52, 36, 9, 0.745);
+  --winner-panel-header-color: rgb(255, 255, 255);
+  --btn-bg-color: rgb(246, 137, 48);
+  --btn-bg-color-hover: rgb(255, 125, 73);
+  --btn-bg-color-active: rgb(253, 107, 44);
 }
 
 * {
@@ -29,7 +27,7 @@ body {
   display: flex;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(45deg, var(--bg-color-1) 50%, var(--bg-color-2));
+  background: linear-gradient(65deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3));
   font-family: 'Monaco', sans-serif;
 }
 
@@ -73,10 +71,10 @@ main h1 {
 }
 
 .cell.o-winner {
-  background-color: rgba(0, 255, 0, 0.184);
+  background-color: rgba(165, 255, 47, 0.7);
 }
 .cell.x-winner {
-  background-color: rgba(255, 0, 0, 0.184);
+  background-color: rgba(255, 64, 47, 0.7);
 }
 
 /*Draws diagonals to form X shape*/
