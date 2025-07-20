@@ -18,3 +18,10 @@ This is a basic calendar that was made with the Date() constructor in JS, you ca
 month or previous month. [Link Here](https://lawndrift.github.io/basic-web-dev-projects/calendar/calendar.html)
 
 <img src="https://ik.imagekit.io/LawnDrift/calendar.png?updatedAt=1751760533414" width="500" alt="Calendar Image">
+
+## Basic Tic Tac Toe 🧩
+Basic tic tac toe game, you can click each slot to put "X", after that, the symbol turns to "O". This game includes basic scoring system, hover effects for
+each symbol, and responsive design for all screen sizes.
+[Link Here](https://lawndrift.github.io/basic-web-dev-projects/tic%20tac%20toe/tic_tac_toe.html)
+
+<img src="https://ik.imagekit.io/LawnDrift/Screenshot%202025-07-15%20131531.png?updatedAt=1752603408967" height="400" alt="tic tac toe screenshot">
