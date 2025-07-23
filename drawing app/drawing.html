@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawing App</title>
+</head>
+<body>
+  <main>
+    <section class="tools">
+      <ul class="shapes">
+        <label class="title">Shapes</label>
+        <li id="rectangle-btn">
+          <img src="rectangle.png">
+          <span>Rectangle</span>
+        </li>
+        <li id="circle-btn">
+          <img src="circle.png">
+          <span>Circle</span>
+        </li>
+        <li id="triangle-btn">
+          <img src="triangle.png">
+          <span>Triangle</span>
+        </li>
+      </ul>
+      <ul class="options">
+        <label class="title">Options</label>
+        <li id="brush">
+          <img src="brush-stroke.svg" width="64">
+          <span>Brush</span>
+        </li>
+        <li id="eraser">
+          <img src="line-eraser.svg" width="64">
+          <span>Eraser</span>
+        </li>
+        <input type="range" id="brush-size-range">
+      </ul>
+      <label class="title">Colors</label>
+      <ul class="color-options">
+        <li class="color-option"></li>
+        <li class="color-option"></li>
+        <li class="color-option"></li>
+        <li class="color-option"></li>
+        <li class="color-option"></li>
+      </ul>
+
+      <button id="clear-canvas">Clear Canvas</button>
+      <button id="save-img">Save As Image</button>
+    </section>
+
+    <section class="drawing-board">
+      <canvas></canvas>
+    </section>
+  </main>
+</body>
+</html>
