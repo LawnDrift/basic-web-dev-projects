@@ -1,0 +1,95 @@
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
+
+:root {
+  --body-bg-color: rgb(200, 255, 193);
+  --section-bg-color: white;
+  --li-color: rgb(95, 95, 95);
+  --title-color: rgb(68, 68, 68);
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--body-bg-color);
+}
+
+body, button, input {
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+  max-width: 1050px;
+}
+
+.tools-board {
+  width: 210px;
+  background-color: var(--section-bg-color);
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawing-board {
+  background-color: var(--section-bg-color);
+  flex: 1;
+  border-radius: 0.4rem;
+}
+.shapes, .options, .color-options {
+  list-style: none;
+  margin-bottom: 10px;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.title {
+  font-size: 17px;
+  color: var(--title-color);
+  padding-left: 10px;
+}
+
+.shapes li, .options li {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-left: 35px;
+  font-size: 15px;
+  color: var(--li-color);
+  
+}
+
+#brush-size-range {
+  width: 90%;
+  height: 5px;
+  align-self: center;
+}
+
+.tools img {
+  width: 16px;
+}
+
+.tools li:is(:hover, .active) img {
+  filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(500deg) brightness(200%) contrast(50%);
+}
+
+.tools li:is(:hover, .active) {
+  color: rgb(120, 197, 110);
+  cursor: pointer;
+}
+
+.color-option {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  background-color: red;
+  border-radius: 50%;
+}
