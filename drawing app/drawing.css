@@ -86,10 +86,36 @@ main {
   cursor: pointer;
 }
 
+.color-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 35px;
+  margin-right: 10px;
+}
+
+
+
+
 .color-option {
   cursor: pointer;
-  height: 14px;
-  width: 14px;
+  height: 20px;
+  width: 20px;
   background-color: red;
   border-radius: 50%;
+  position: relative;
+  margin-top: 3px;
+}
+
+.color-option::before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: inherit;
+  border-radius: inherit;
+  border: 2px solid white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
