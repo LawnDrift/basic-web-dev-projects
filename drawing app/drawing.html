@@ -25,8 +25,8 @@
             <img src="triangle.png">
             <span>Triangle</span>
           </li>
-          <li id="fill-color">
-            <img src="bucket-icon.svg">
+          <li>
+            <input type="checkbox" id="fill-color">
             <span>Fill Color</span>
           </li>
         </ul>
@@ -48,12 +48,15 @@
           <li class="color-option selected"></li>
           <li class="color-option"></li>
           <li class="color-option"></li>
-          <li class="color-option"></li>
+          <li class="color-option">
+            <input type="color" id="color-picker" value="#4A98F7">
+          </li>
         </ul>
-
+      </section>
+      <div class="buttons-div">
         <button id="clear-canvas">Clear Canvas</button>
         <button id="save-img">Save As Image</button>
-      </section>
+      </div>
     </div>
     <section class="drawing-board">
       <canvas></canvas>

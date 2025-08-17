@@ -33,9 +33,7 @@ main {
   width: 210px;
   background-color: var(--section-bg-color);
   border-radius: 0.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 210px;
   padding: 10px;
 }
 
@@ -58,6 +56,7 @@ main {
   padding-left: 10px;
 }
 
+
 .shapes li, .options li {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -65,6 +64,16 @@ main {
   font-size: 15px;
   color: var(--li-color);
   
+}
+
+input[type="checkbox"]{
+  margin-left: 0;
+  width: 16px;
+  height: 16px;
+}
+
+#fill-color:hover {
+  cursor: pointer;
 }
 
 #brush-size-range {
@@ -101,8 +110,7 @@ main {
   background-color: red;
   border-radius: 50%;
   position: relative;
-  margin-top: 4px;
-  margin-right: 0;
+  margin: 0;
   border: 2px solid #fff;
 }
 
@@ -148,4 +156,47 @@ main {
 
 .color-option:first-child:hover::before {
   border-color: #ccc;
+}
+
+.color-option #color-picker {
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttons-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#clear-canvas {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #999;
+  width: 150px;
+  height: 40px;
+
+}
+
+#clear-canvas:hover {
+  cursor: pointer;
+  background-color: rgb(251, 251, 251);
+}
+
+#clean-canvas:active {
+  background-color: #ddd;
+}
+
+#save-img{
+  border: none;
+  border-radius: 4px;
+  background-color: #4A98F7;
+  color: #fff;
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
 }
