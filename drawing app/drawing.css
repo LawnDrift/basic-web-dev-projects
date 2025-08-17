@@ -89,7 +89,7 @@ main {
 .color-options {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -102,13 +102,15 @@ main {
   border-radius: 50%;
   position: relative;
   margin-top: 4px;
-  margin-right: auto;
+  margin-right: 0;
+  border: 2px solid #fff;
 }
 
 
 .color-option:nth-of-type(1) {
   background: #fff;
   border: 1px solid #bfbfbf;
+
 }
 
 .color-option:nth-of-type(2) {
@@ -127,7 +129,7 @@ main {
   background: #4A98F7;
 }
 
-.color-option:hover::before {
+.color-option:hover::before, .color-option.selected::before {
   position: absolute;
   content: "";
   top: 50%;
@@ -138,6 +140,10 @@ main {
   border-radius: inherit;
   border: 2px solid #fff;
   transform: translate(-50%, -50%);
+}
+
+.color-option:first-child.selected::before {
+  border-color: #ccc;
 }
 
 .color-option:first-child:hover::before {
