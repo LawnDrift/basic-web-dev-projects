@@ -184,11 +184,11 @@ input[type="checkbox"]{
 
 #clear-canvas:hover {
   cursor: pointer;
-  background-color: rgb(251, 251, 251);
+  background-color: rgb(244, 244, 244);
 }
 
-#clean-canvas:active {
-  background-color: #ddd;
+#clear-canvas:active {
+  background-color: #ffffff;
 }
 
 #save-img{
@@ -199,4 +199,18 @@ input[type="checkbox"]{
   width: 150px;
   height: 40px;
   margin-top: 10px;
+}
+
+#save-img:hover {
+  background-color: #2e86f1;
+  cursor: pointer;
+}
+
+#save-img:active {
+  background-color: #77b4ff;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
 }
