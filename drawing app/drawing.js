@@ -2,11 +2,12 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const toolBtns = document.querySelectorAll(".option");
 const fillColor = document.querySelector("#fill-color");
+const sizeSlider = document.querySelector("#brush-size-range");
 
 let prevMouseX, prevMouseY, snapshot;
 let isDrawing = false;
 let selectedTool = "brush";
-let brushWidth = 5;
+let brushWidth = sizeSlider.value;
 
 window.addEventListener("load", () => {
   //returns viewable with/height of an element
@@ -75,7 +76,11 @@ toolBtns.forEach(btn => {
     selectedTool = btn.id;
     console.log(selectedTool);    
   })
-})
+});
+
+sizeSlider.addEventListener("change", () => {
+  brushWidth = sizeSlider.value; //pass slider value as brush size.
+});
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mouseup", () => isDrawing = false);
 canvas.addEventListener("mousemove", drawing);
