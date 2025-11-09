@@ -3,10 +3,12 @@ const ctx = canvas.getContext("2d");
 const toolBtns = document.querySelectorAll(".option");
 const fillColor = document.querySelector("#fill-color");
 const sizeSlider = document.querySelector("#brush-size-range");
+const colorBtns = document.querySelectorAll(".color-option");
 
 let prevMouseX, prevMouseY, snapshot;
 let isDrawing = false;
 let selectedTool = "brush";
+let currentColor = "black";
 let brushWidth = sizeSlider.value;
 
 window.addEventListener("load", () => {
@@ -49,6 +51,8 @@ const startDraw = (e) => {
   prevMouseY = e.offsetY;
   ctx.beginPath(); // create new path to draw
   ctx.lineWidth = brushWidth;
+  ctx.strokeStyle = currentColor;
+  ctx.fillStyle = currentColor;
   snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
 }
 
@@ -81,6 +85,15 @@ toolBtns.forEach(btn => {
 sizeSlider.addEventListener("change", () => {
   brushWidth = sizeSlider.value; //pass slider value as brush size.
 });
+
+colorBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".color-options .selected").classList.remove("selected");
+    btn.classList.add("selected");
+    currentColor = window.getComputedStyle(btn).getPropertyValue("background");
+  });
+});
+
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mouseup", () => isDrawing = false);
 canvas.addEventListener("mousemove", drawing);
